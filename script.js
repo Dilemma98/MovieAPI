@@ -49,6 +49,11 @@ function printMovieDetails(movie) {
     let img = document.createElement("img");
     img.src = "http://image.tmdb.org/t/p/w500" + movie.poster_path;
 
+    let b = document.createElement("b");
+    b.innerText = 
+    "Rating: " + movie.vote_average + " \n" +
+    "Votes: " + movie.vote_count;
+
     movieInfo.innerHTML = "";
-    movieInfo.append(h3, img, p);
+    movieInfo.append(h3, img, p, b);
 }
