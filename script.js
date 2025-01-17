@@ -1,5 +1,6 @@
 let movieList = document.getElementById("movieList");
 let movieInfo = document.getElementById("movieInfo");
+let imgDiv = document.getElementById("imgDiv");
 
 const options = {
   method: "GET",
@@ -67,12 +68,12 @@ function getSimilar(movie_id) {
 function printSimilarMovies(movie_id) {
   let similar = document.createElement("h3");
   similar.innerText = "Similar Movies";
-  movieInfo.append(similar);
+  imgDiv.append(similar);
   movie_id.results.map((movie) => {
-    let li = document.createElement("li");
-    li.innerText = movie.original_title;
+    let p = document.createElement("p");
+    p.innerText = movie.original_title;
 
-    movieInfo.appendChild(li);
+    imgDiv.appendChild(p);
   });
 }
 
@@ -92,7 +93,7 @@ function printMovieList(movies) {
 
 function printMovieDetails(movie) {
   movieInfo.innerText = "";
-
+  imgDiv.innerText = "";
   let h1 = document.createElement("h1");
   h1.innerText = "Details";
   let h3 = document.createElement("h3");
@@ -110,5 +111,6 @@ function printMovieDetails(movie) {
 
   getCredits(movie.id);
 
-  movieInfo.append(h1, h3, img, p, b);
+  movieInfo.append(h1, h3, p, b);
+  imgDiv.append(img);
 }
