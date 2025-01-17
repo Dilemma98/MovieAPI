@@ -18,29 +18,32 @@ function getCredits(id) {
     .then((res) => res.json())
     .then((data) => {
       console.log(data.cast);
+
       printCreditsList(data.cast);
     });
 }
 
 function getMovieList() {
-
-  fetch("https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc",
+  fetch(
+    "https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc",
 
     options
   )
     .then((res) => res.json())
     .then((data) => {
       printMovieList(data.results);
-
     });
 }
 function printCreditsList(id) {
+  let actors = document.createElement("h3");
+  actors.innerText = "Actors";
+  movieInfo.append(actors);
   id.map((name) => {
     let li = document.createElement("p");
     li.innerText = name.name;
     movieInfo.append(li);
   });
-
+}
 function printMovieList(movies) {
   movies.map((movie) => {
     let li = document.createElement("li");
@@ -50,20 +53,22 @@ function printMovieList(movies) {
       console.log("click på film", movie.original_title);
       printMovieDetails(movie);
     });
-
-=======
+  });
+}
 function getSimilar(movie_id) {
-  fetch(`https://api.themoviedb.org/3/movie/${movie_id}/similar`, options)
-  .then((res) =>res.json()
-    .then((data) => {
+  fetch(`https://api.themoviedb.org/3/movie/${movie_id}/similar`, options).then(
+    (res) =>
+      res.json().then((data) => {
         printSimilarMovies(data);
       })
   );
 }
 
 function printSimilarMovies(movie_id) {
+  let similar = document.createElement("h3");
+  similar.innerText = "Similar Movies";
+  movieInfo.append(similar);
   movie_id.results.map((movie) => {
-
     let li = document.createElement("li");
     li.innerText = movie.original_title;
 
@@ -81,15 +86,15 @@ function printMovieList(movies) {
       getSimilar(movie.id);
     });
 
-
     movieList.appendChild(li);
   });
 }
 
 function printMovieDetails(movie) {
-
   movieInfo.innerText = "";
 
+  let h1 = document.createElement("h1");
+  h1.innerText = "Details";
   let h3 = document.createElement("h3");
   h3.innerText = movie.original_title;
 
@@ -103,8 +108,7 @@ function printMovieDetails(movie) {
   b.innerText =
     "Rating: " + movie.vote_average + " \n" + "Votes: " + movie.vote_count;
 
-
   getCredits(movie.id);
 
-  movieInfo.append(h3, img, p, b);
+  movieInfo.append(h1, h3, img, p, b);
 }
