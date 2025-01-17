@@ -1,0 +1,21 @@
+li {
+  width: 300px;
+  list-style: none;
+  padding-bottom: 4px;
+}
+
+li:hover {
+  cursor: pointer;
+  padding-left: 6px;
+  transition: ease-in-out 0.3s;
+  background-color: rgb(199, 197, 197);
+}
+
+.gridContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+img {
+  width: 50%;
+  height: 50%;
+}
